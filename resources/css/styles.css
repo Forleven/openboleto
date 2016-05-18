@@ -97,6 +97,10 @@ body{
     text-align: right;
 }
 
+.table-boleto .lft {
+    text-align: left;
+}
+
 .table-boleto .logobanco {
     display: inline-block;
     max-width: 150px;
