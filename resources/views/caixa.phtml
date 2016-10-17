@@ -49,12 +49,26 @@
             <div class="linha-pontilhada" style="margin-bottom: 20px;">Recibo do sacado</div>
         </div>
 
-        <div class="info-empresa">
+         <div class="info-empresa">
             <?php if ($logotipo) : ?>
             <div style="display: inline-block;">
                 <img alt="logotipo" src="<?php echo $logotipo; ?>" />
             </div>
             <?php endif ?>
+            <div style="display: inline-block; vertical-align: super;">
+                <div><strong><?php echo $cedente; ?></strong></div>
+                <div><?php echo $cedente_cpf_cnpj; ?></div>
+                <div><?php echo $cedente_endereco1; ?></div>
+                <div><?php echo $cedente_endereco2; ?></div>
+            </div>
+
+            <div style="display: inline-block;vertical-align: super;float: right;margin-top: 10px;margin-right: 50px;">
+                <div style="max-width: 300px;"><strong><?php echo $demonstrativo[0]; ?></strong></div>
+                <div style="max-width: 300px;"><?php echo $demonstrativo[1]; ?></div>
+                <div style="max-width: 300px;"><?php echo $demonstrativo[2]; ?></div>
+                <div style="max-width: 300px;"><?php echo $demonstrativo[3]; ?></div>
+                <div style="max-width: 300px;"><?php echo $demonstrativo[4]; ?></div>
+            </div>
         </div>
         <br>
 
