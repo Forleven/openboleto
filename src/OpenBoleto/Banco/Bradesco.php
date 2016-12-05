@@ -83,19 +83,36 @@ class Bradesco extends BoletoAbstract
      */
     protected function gerarNossoNumero()
     {
-        return $this->getSequencial();
+        $numero = static::zeroFill($this->getCarteira(), 2) . self::zeroFill($this->getSequencial(), 11);
+        $dv = static::modulo11($numero, 7);
+        $digito = 11 - $dv['resto'];
+        // https://github.com/CobreGratis/boletophp/blob/master/include/funcoes_bradesco.php#L73
+        if ($digito == 10) {
+            $dv = "P";
+        }
+        elseif($digito == 11) {
+            $dv = 0;
+        }
+        else {
+            $dv = $digito;
+        }
+
+        $numero .= '-' . $dv;
+        return substr($numero, 0, 2) . ' / ' . substr($numero, 2);
     }
 
     /**
      * Método para gerar o código da posição de 20 a 44
-     *
+     * @see https://github.com/CobreGratis/boletophp/blob/master/include/funcoes_bradesco.php#L61
      * @return string
      */
     public function getCampoLivre()
     {
+        // Remove o digito verificador
+        $nosso_numero = substr($this->getNossoNumero(false), 0, 13);
+
         return static::zeroFill($this->getAgencia(), 4) .
-            static::zeroFill($this->getCarteira(), 2) .
-            static::zeroFill($this->getNossoNumero(), 11) .
+            static::zeroFill($nosso_numero, 13) .
             static::zeroFill($this->getConta(), 7) .
             '0';
     }
@@ -132,6 +149,7 @@ class Bradesco extends BoletoAbstract
         return array(
             'cip' => self::zeroFill($this->getCip(), 3),
             'mostra_cip' => true,
+            'mostrar_carteira' => true,
         );
     }
 }
