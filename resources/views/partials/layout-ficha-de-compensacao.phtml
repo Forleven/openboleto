@@ -80,8 +80,13 @@
                 <div class="conteudo"><?php echo $data_processamento ?></div>
             </td>
             <td>
-                <div class="titulo">Nosso número</div>
-                <div class="conteudo rtl"><?php echo $nosso_numero ?></div>
+                <?php if ($mostrar_carteira): ?>
+                    <div class="titulo">Carteira / Nosso número</div>
+                    <div align="right" class="conteudo"><?php echo $nosso_numero ?></div>
+                <?php else: ?>
+                    <div class="titulo">Nosso número</div>
+                    <div class="conteudo"><?php echo $nosso_numero ?></div>
+                <?php endif; ?>
             </td>
         </tr>
         <tr>
