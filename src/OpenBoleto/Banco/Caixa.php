@@ -174,4 +174,11 @@ class Caixa extends BoletoAbstract
 
        return $campoLivre;
     }
+
+    public function getViewVars()
+    {
+        return array(
+            'especie_caixa' => 'R$',
+        );
+    }
 }
